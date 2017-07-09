@@ -1,0 +1,18 @@
+{
+  "paths" : {
+    "gopath" : "\/Users\/carlca\/Code\/go",
+    "root" : "\/Users\/carlca\/Code\/go\/src\/github.com\/AndreasBriese\/bbloom"
+  },
+  "files" : {
+    "height" : 348
+  },
+  "leftPanel" : {
+    "width" : 313
+  },
+  "mainForm" : {
+    "left" : 333,
+    "top" : 28,
+    "width" : 1350,
+    "height" : 906
+  }
+}

@@ -1,0 +1,91 @@
+object PreferencesForm: TPreferencesForm
+  Left = 0
+  Height = 390
+  Top = 0
+  Width = 567
+  BorderStyle = bsDialog
+  Caption = 'Preferences'
+  ClientHeight = 390
+  ClientWidth = 567
+  Visible = False
+  object Pages: TPageControl
+    Left = 0
+    Height = 360
+    Top = 0
+    Width = 567
+    ActivePage = FontsTab
+    TabIndex = 1
+    TabOrder = 0
+    object ColorsTab: TTabSheet
+      Caption = 'Colors'
+      ClientHeight = 321
+      ClientWidth = 561
+      object ColorGrid: TcaSynColorGrid
+        Left = 0
+        Height = 344
+        Top = 0
+        Width = 563
+      end
+    end
+    object FontsTab: TTabSheet
+      Caption = 'Fonts'
+      ClientHeight = 321
+      ClientWidth = 561
+      object ComboBox1: TComboBox
+        Left = 230
+        Height = 20
+        Top = 72
+        Width = 100
+        ItemHeight = 0
+        Style = csDropDownList
+        TabOrder = 0
+      end
+      object LabeledEdit1: TLabeledEdit
+        Left = 140
+        Height = 22
+        Top = 132
+        Width = 80
+        EditLabel.AnchorSideTop.Control = LabeledEdit1
+        EditLabel.AnchorSideTop.Side = asrCenter
+        EditLabel.AnchorSideRight.Control = LabeledEdit1
+        EditLabel.AnchorSideBottom.Control = LabeledEdit1
+        EditLabel.AnchorSideBottom.Side = asrBottom
+        EditLabel.Left = 56
+        EditLabel.Height = 16
+        EditLabel.Top = 135
+        EditLabel.Width = 81
+        EditLabel.Caption = 'LabeledEdit1'
+        EditLabel.ParentColor = False
+        LabelPosition = lpLeft
+        TabOrder = 1
+        Text = 'LabeledEdit1'
+      end
+    end
+  end
+  object CancelButton: TButton
+    Left = 388
+    Height = 22
+    Top = 360
+    Width = 75
+    Cancel = True
+    Caption = 'Cancel'
+    OnClick = CancelButtonClick
+    TabOrder = 1
+  end
+  object OKButton: TButton
+    Left = 308
+    Height = 22
+    Top = 360
+    Width = 75
+    Caption = 'OK'
+    OnClick = OKButtonClick
+    TabOrder = 2
+  end
+  object FontDialog1: TFontDialog
+    MinFontSize = 0
+    MaxFontSize = 0
+    Options = [fdEffects, fdFixedPitchOnly]
+    left = 363
+    top = 176
+  end
+end

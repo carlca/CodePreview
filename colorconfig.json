@@ -1,0 +1,80 @@
+{
+  "Comment" : {
+    "foreColor" : "808080",
+    "backColor" : "424242",
+    "italic" : true,
+    "bold" : false
+  },
+  "Constant" : {
+    "foreColor" : "FF00FF",
+    "backColor" : "424242",
+    "italic" : false,
+    "bold" : true
+  },
+  "Dot" : {
+    "foreColor" : "008000",
+    "backColor" : "424242",
+    "italic" : false,
+    "bold" : true
+  },
+  "Entity" : {
+    "foreColor" : "00FF00",
+    "backColor" : "424242",
+    "italic" : false,
+    "bold" : true
+  },
+  "Identifier" : {
+    "foreColor" : "F0CAA6",
+    "backColor" : "424242",
+    "italic" : false,
+    "bold" : false
+  },
+  "Key" : {
+    "foreColor" : "FF00FF",
+    "backColor" : "424242",
+    "italic" : false,
+    "bold" : false
+  },
+  "Number" : {
+    "foreColor" : "FFFFFF",
+    "backColor" : "424242",
+    "italic" : false,
+    "bold" : false
+  },
+  "Object" : {
+    "foreColor" : "000080",
+    "backColor" : "424242",
+    "italic" : false,
+    "bold" : true
+  },
+  "Preprocessor" : {
+    "foreColor" : "FFFFFF",
+    "backColor" : "424242",
+    "italic" : false,
+    "bold" : false
+  },
+  "Space" : {
+    "foreColor" : "424242",
+    "backColor" : "424242",
+    "italic" : false,
+    "bold" : false
+  },
+  "String" : {
+    "foreColor" : "00FF00",
+    "backColor" : "424242",
+    "italic" : false,
+    "bold" : false
+  },
+  "Symbol" : {
+    "foreColor" : "C0C0C0",
+    "backColor" : "424242",
+    "italic" : false,
+    "bold" : false
+  },
+  "Variable" : {
+    "foreColor" : "800080",
+    "backColor" : "424242",
+    "italic" : false,
+    "bold" : true
+  }
+}
