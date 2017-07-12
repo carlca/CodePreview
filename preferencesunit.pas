@@ -32,29 +32,38 @@ unit preferencesunit;
 interface
 
 uses
-  Classes, SysUtils, FileUtil, SynEdit, Forms, Controls, Graphics, Dialogs,
-  StdCtrls, Grids, ExtCtrls, ColorBox, Spin, casyncolorgrid, ComCtrls,
-  cargbspinedit, LCLType, casynconfig;
+  Classes, SysUtils, FileUtil, SynEdit, RTTIGrids, Forms, Controls, Graphics,
+  Dialogs, StdCtrls, Grids, ExtCtrls, ColorBox, Spin, casyncolorgrid, ComCtrls,
+  cargbspinedit, cafontselector, caspeedbutton, LCLType, EditBtn, ComboEx,
+  Buttons, casynconfig;
 
 type
 
   { TPreferencesForm }
 
   TPreferencesForm = class(TForm)
-    ComboBox1: TComboBox;
+    Button1: TButton;
+    caFontSelector1: TcaFontSelector;
+    caSpeedButton1: TcaSpeedButton;
+    Edit1: TEdit;
+    Edit2: TEdit;
     FontDialog1: TFontDialog;
-    LabeledEdit1: TLabeledEdit;
     OKButton: TButton;
     CancelButton: TButton;
     ColorGrid: TcaSynColorGrid;
     Pages: TPageControl;
     ColorsTab: TTabSheet;
     FontsTab: TTabSheet;
+    TIPropertyGrid1: TTIPropertyGrid;
+    TIPropertyGrid2: TTIPropertyGrid;
+    UpDown1: TUpDown;
+    procedure Button1Click(Sender: TObject);
     procedure CancelButtonClick(Sender: TObject);
     procedure OKButtonClick(Sender: TObject);
   private
     { private declarations }
     FModified: Boolean;
+    FFontSelector: TcaFontSelector;
     function GetColorConfig: TcaSynConfig;
     procedure SetColorConfig(AValue: TcaSynConfig);
   public
@@ -96,6 +105,14 @@ end;
 procedure TPreferencesForm.CancelButtonClick(Sender: TObject);
 begin
   Close;
+end;
+
+procedure TPreferencesForm.Button1Click(Sender: TObject);
+begin
+  FFontSelector := TcaFontSelector.Create(Self);
+  FFontSelector.Parent := Self;
+  FFontSelector.Left := 30;
+  FFontSelector.Top := 30;
 end;
 
 procedure TPreferencesForm.OKButtonClick(Sender: TObject);

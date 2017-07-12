@@ -7,6 +7,7 @@ object PreferencesForm: TPreferencesForm
   Caption = 'Preferences'
   ClientHeight = 390
   ClientWidth = 567
+  LCLVersion = '1.8.0.3'
   Visible = False
   object Pages: TPageControl
     Left = 0
@@ -31,34 +32,84 @@ object PreferencesForm: TPreferencesForm
       Caption = 'Fonts'
       ClientHeight = 321
       ClientWidth = 561
-      object ComboBox1: TComboBox
-        Left = 230
-        Height = 20
-        Top = 72
-        Width = 100
-        ItemHeight = 0
-        Style = csDropDownList
+      object Button1: TButton
+        Left = 468
+        Height = 25
+        Top = 256
+        Width = 75
+        Caption = 'Button1'
+        OnClick = Button1Click
         TabOrder = 0
       end
-      object LabeledEdit1: TLabeledEdit
-        Left = 140
+      object caFontSelector1: TcaFontSelector
+        Left = 44
+        Height = 24
+        Top = 292
+        Width = 336
+        LabelCaption = 'Label Caption'
+        LabelWidth = 100
+      end
+      object caSpeedButton1: TcaSpeedButton
+        Left = 520
         Height = 22
-        Top = 132
+        Top = 292
+        Width = 23
+        Caption = 'A'
+        Color = clBtnShadow
+        Font.Height = -8
+        ParentFont = False
+      end
+      object UpDown1: TUpDown
+        Left = 396
+        Height = 31
+        Top = 288
+        Width = 17
+        Min = 0
+        Position = 0
+        TabOrder = 2
+        Wrap = False
+      end
+      object Edit1: TEdit
+        Left = 56
+        Height = 22
+        Top = 4
         Width = 80
-        EditLabel.AnchorSideTop.Control = LabeledEdit1
-        EditLabel.AnchorSideTop.Side = asrCenter
-        EditLabel.AnchorSideRight.Control = LabeledEdit1
-        EditLabel.AnchorSideBottom.Control = LabeledEdit1
-        EditLabel.AnchorSideBottom.Side = asrBottom
-        EditLabel.Left = 56
-        EditLabel.Height = 16
-        EditLabel.Top = 135
-        EditLabel.Width = 81
-        EditLabel.Caption = 'LabeledEdit1'
-        EditLabel.ParentColor = False
-        LabelPosition = lpLeft
-        TabOrder = 1
-        Text = 'LabeledEdit1'
+        TabOrder = 3
+        Text = 'Edit1'
+      end
+      object Edit2: TEdit
+        Left = 332
+        Height = 22
+        Top = 4
+        Width = 80
+        TabOrder = 4
+        Text = 'Edit2'
+      end
+      object TIPropertyGrid1: TTIPropertyGrid
+        Left = 24
+        Height = 210
+        Top = 36
+        Width = 200
+        CheckboxForBoolean = False
+        DefaultValueFont.Color = clWindowText
+        Filter = [tkInteger, tkChar, tkEnumeration, tkFloat, tkSet, tkMethod, tkSString, tkLString, tkAString, tkWString, tkVariant, tkArray, tkRecord, tkInterface, tkClass, tkObject, tkWChar, tkBool, tkInt64, tkQWord, tkDynArray, tkInterfaceRaw, tkProcVar, tkUString, tkUChar, tkHelper, tkFile, tkClassRef, tkPointer]
+        Indent = 13
+        NameFont.Color = clWindowText
+        TIObject = Edit1
+        ValueFont.Color = clMaroon
+      end
+      object TIPropertyGrid2: TTIPropertyGrid
+        Left = 316
+        Height = 210
+        Top = 36
+        Width = 200
+        CheckboxForBoolean = False
+        DefaultValueFont.Color = clWindowText
+        Filter = [tkInteger, tkChar, tkEnumeration, tkFloat, tkSet, tkMethod, tkSString, tkLString, tkAString, tkWString, tkVariant, tkArray, tkRecord, tkInterface, tkClass, tkObject, tkWChar, tkBool, tkInt64, tkQWord, tkDynArray, tkInterfaceRaw, tkProcVar, tkUString, tkUChar, tkHelper, tkFile, tkClassRef, tkPointer]
+        Indent = 13
+        NameFont.Color = clWindowText
+        TIObject = Edit2
+        ValueFont.Color = clMaroon
       end
     end
   end
@@ -85,7 +136,7 @@ object PreferencesForm: TPreferencesForm
     MinFontSize = 0
     MaxFontSize = 0
     Options = [fdEffects, fdFixedPitchOnly]
-    left = 363
-    top = 176
+    left = 468
+    top = 324
   end
 end
