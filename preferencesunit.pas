@@ -5,7 +5,7 @@
   MODIFIED LGPL Licence - this is the same licence as that used by the Free Pascal Compiler (FPC)
   A copy of the full licence can be found in the file Licence.md in the same folder as this file.
 
-  This library is free software; you can redistribute it and/or modify it under the terms of the GNU Library General Public
+  This library is free software; you can redistribute it and/or modify it under the terms of the GNU Li7brary General Public
   License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version
   with the following modification:
 
@@ -39,39 +39,51 @@ uses
 
 type
 
-  { TPreferencesForm }
+  // TPreferencesForm
 
   TPreferencesForm = class(TForm)
-    Button1: TButton;
-    caFontSelector1: TcaFontSelector;
-    caSpeedButton1: TcaSpeedButton;
-    Edit1: TEdit;
-    Edit2: TEdit;
-    FontDialog1: TFontDialog;
-    OKButton: TButton;
-    CancelButton: TButton;
+    // form components
+    FilesFontSelector: TcaFontSelector;
+    FoldersFontSelector: TcaFontSelector;
+    GolangFontSelector: TcaFontSelector;
     ColorGrid: TcaSynColorGrid;
     Pages: TPageControl;
     ColorsTab: TTabSheet;
     FontsTab: TTabSheet;
-    TIPropertyGrid1: TTIPropertyGrid;
-    TIPropertyGrid2: TTIPropertyGrid;
-    UpDown1: TUpDown;
-    procedure Button1Click(Sender: TObject);
-    procedure CancelButtonClick(Sender: TObject);
-    procedure OKButtonClick(Sender: TObject);
+    // form component event handlers
+    procedure FilesFontSelectorSelectedFontChanged(Sender: TObject; AFont: TFont);
+    procedure FoldersFontSelectorSelectedFontChanged(Sender: TObject; AFont: TFont);
+    procedure GolangFontSelectorSelectedFontChanged(Sender: TObject; AFont: TFont);
   private
-    { private declarations }
-    FModified: Boolean;
+    // private declarations
     FFontSelector: TcaFontSelector;
+    FOnFilesFontChanged: TcaFontChangedEvent;
+    FOnFoldersFontChanged: TcaFontChangedEvent;
+    FOnGolangFontChanged: TcaFontChangedEvent;
+    FOnColorGridChanged: TNotifyEvent;
+    // private event handlers
+    procedure ColorGridChangedEvent(Sender: TObject);
+    // private property methods
     function GetColorConfig: TcaSynConfig;
     procedure SetColorConfig(AValue: TcaSynConfig);
+  protected
+    // protected methods
+    procedure DoFilesFontChanged(AFont: TFont); virtual;
+    procedure DoFoldersFontChanged(AFont: TFont); virtual;
+    procedure DoGolangFontChanged(AFont: TFont); virtual;
+    procedure DoColorFieldChanged; virtual;
   public
-    { public declarations }
+    // create/destroy
     constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
-    property Modified: Boolean read FModified;
+    // public methods
+    procedure SetFonts(FilesFont, FoldersFont, GolangFont: TFont);
+    // public properties
     property ColorConfig: TcaSynConfig read GetColorConfig write SetColorConfig;
+    property OnFilesFontChanged: TcaFontChangedEvent read FOnFilesFontChanged write FOnFilesFontChanged;
+    property OnFoldersFontChanged: TcaFontChangedEvent read FOnFoldersFontChanged write FOnFoldersFontChanged;
+    property OnGolangFontChanged: TcaFontChangedEvent read FOnGolangFontChanged write FOnGolangFontChanged;
+    property OnColorGridChanged: TNotifyEvent read FOnColorGridChanged write FOnColorGridChanged;
   end;
 
 var
@@ -90,11 +102,11 @@ constructor TPreferencesForm.Create(AOwner: TComponent);
 begin
   inherited Create(AOwner);
   Width := 567;
-  Height := 390;
+  Height := 360;
   Top := 70;
   Left := (Screen.Width div 2) - (Width div 2);
-  OKButton.Left := (Width div 2) - OKButton.Width - 1;
-  CancelButton.Left := OKButton.Left + OKButton.Width + 2;
+  Cursor := crDefault;
+  ColorGrid.OnColorGridChanged := @ColorGridChangedEvent;
 end;
 
 destructor TPreferencesForm.Destroy;
@@ -102,23 +114,26 @@ begin
   inherited Destroy;
 end;
 
-procedure TPreferencesForm.CancelButtonClick(Sender: TObject);
+procedure TPreferencesForm.SetFonts(FilesFont, FoldersFont, GolangFont: TFont);
 begin
-  Close;
+  FilesFontSelector.SelectedFont := FilesFont;
+  FoldersFontSelector.SelectedFont := FoldersFont;
+  GolangFontSelector.SelectedFont := GolangFont;
 end;
 
-procedure TPreferencesForm.Button1Click(Sender: TObject);
+procedure TPreferencesForm.FilesFontSelectorSelectedFontChanged(Sender: TObject; AFont: TFont);
 begin
-  FFontSelector := TcaFontSelector.Create(Self);
-  FFontSelector.Parent := Self;
-  FFontSelector.Left := 30;
-  FFontSelector.Top := 30;
+  DoFilesFontChanged(AFont);
 end;
 
-procedure TPreferencesForm.OKButtonClick(Sender: TObject);
+procedure TPreferencesForm.FoldersFontSelectorSelectedFontChanged(Sender: TObject; AFont: TFont);
 begin
-  FModified := True;
-  Close;
+  DoFoldersFontChanged(AFont);
+end;
+
+procedure TPreferencesForm.GolangFontSelectorSelectedFontChanged(Sender: TObject; AFont: TFont);
+begin
+  DoGolangFontChanged(AFont);
 end;
 
 function TPreferencesForm.GetColorConfig: TcaSynConfig;
@@ -126,9 +141,34 @@ begin
   Result := ColorGrid.ColorConfig;
 end;
 
+procedure TPreferencesForm.ColorGridChangedEvent(Sender: TObject);
+begin
+  DoColorFieldChanged;
+end;
+
 procedure TPreferencesForm.SetColorConfig(AValue: TcaSynConfig);
 begin
   ColorGrid.ColorConfig := AValue;
+end;
+
+procedure TPreferencesForm.DoFilesFontChanged(AFont: TFont);
+begin
+  if Assigned(FOnFilesFontChanged) then FOnFilesFontChanged(Self, AFont);
+end;
+
+procedure TPreferencesForm.DoFoldersFontChanged(AFont: TFont);
+begin
+  if Assigned(FOnFoldersFontChanged) then FOnFoldersFontChanged(Self, AFont);
+end;
+
+procedure TPreferencesForm.DoGolangFontChanged(AFont: TFont);
+begin
+  if Assigned(FOnGolangFontChanged) then FOnGolangFontChanged(Self, AFont);
+end;
+
+procedure TPreferencesForm.DoColorFieldChanged;
+begin
+  if Assigned(FOnColorGridChanged) then FOnColorGridChanged(Self);
 end;
 
 end.

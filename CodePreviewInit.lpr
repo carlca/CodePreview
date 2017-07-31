@@ -39,13 +39,24 @@ begin
     // paths
     C.Group := 'paths';
     C.StrProp['gopath'] := GetEnvironmentVariableUtf8('GOPATH');
+    C.StrProp['goroot'] := GetEnvironmentVariableUtf8('GOROOT');
     C.StrProp['root'] := '';
-    // files
-    C.Group := 'files';
+    // filesList
+    C.Group := 'filesList';
     C.IntProp['height'] := 250;
+    C.StrProp['fontName'] := 'Lucida Grande';
+    C.IntProp['fontSize'] := 10;
     // leftPanel
     C.Group := 'leftPanel';
     C.IntProp['width'] := 350;
+    // foldersList
+    C.Group := 'foldersList';
+    C.StrProp['fontName'] := 'Lucida Grande';
+    C.IntProp['fontSize'] := 10;
+    // golangEdit
+    C.Group := 'golangEdit';
+    C.StrProp['fontName'] := 'Courier New';
+    C.IntProp['fontSize'] := 10;
   finally
     C.Free;
   end;

@@ -1,0 +1,18 @@
+{
+  "paths" : {
+    "gopath" : "\/Users\/carlca\/Code\/go",
+    "root" : "\/Users\/carlca\/Code\/go\/src\/github.com\/alecthomas\/gometalinter"
+  },
+  "filesList" : {
+    "height" : 403,
+  },
+  "leftPanel" : {
+    "width" : 313,
+  },
+  "mainForm" : {
+    "left" : 444,
+    "top" : 44,
+    "width" : 1350,
+    "height" : 906
+  }
+}

@@ -1,18 +1,29 @@
 {
+  "mainForm" : {
+    "left" : 550,
+    "top" : 188,
+    "width" : 1000,
+    "height" : 600
+  },
   "paths" : {
     "gopath" : "\/Users\/carlca\/Code\/go",
-    "root" : "\/Users\/carlca\/Code\/go\/src\/github.com\/AndreasBriese\/bbloom"
+    "root" : "\/Users\/carlca\/Code\/go\/src\/github.com\/alecthomas\/template",
+    "goroot" : "\/usr\/local\/go"
   },
-  "files" : {
-    "height" : 348
+  "filesList" : {
+    "fontName" : "Lucida Grande",
+    "height" : 285,
+    "fontSize" : 13
   },
   "leftPanel" : {
-    "width" : 313
+    "width" : 236
   },
-  "mainForm" : {
-    "left" : 444,
-    "top" : 44,
-    "width" : 1350,
-    "height" : 906
+  "foldersList" : {
+    "fontName" : "Lucida Grande",
+    "fontSize" : 13
+  },
+  "golangEdit" : {
+    "fontName" : "Monaco",
+    "fontSize" : 10
   }
 }

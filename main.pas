@@ -28,55 +28,92 @@ unit main;
 
 {$mode objfpc}{$H+}
 
-{.$DEFINE DBG}
 {$DEFINE XCODE}
 
 interface
 
 uses
-  Classes, SysUtils, FileUtil, SynEdit,
-  SynCompletion, Forms, Controls, Graphics, Dialogs,
-  FileCtrl, LazUtf8, StdCtrls, ExtCtrls, Buttons, Menus, EditBtn, caUtils,
-  JsonConf, LazFileUtils, caDbg, cajsonconfig, preferencesunit, casynconfig,
-  TypInfo, casynhighlightergolang;
+  Classes, SysUtils, FileUtil, SynEdit, SynCompletion, Forms, Controls,
+  Graphics, Dialogs, FileCtrl, LazUtf8, StdCtrls, ExtCtrls, Buttons, Menus,
+  EditBtn, ComCtrls, caUtils, JsonConf, LazFileUtils, caDbg, cajsonconfig,
+  preferencesunit, casynconfig, TypInfo, casynhighlightergolang, Process,
+  LazLogger, cahint;
 
 type
 
   { TCodePreviewForm }
 
   TCodePreviewForm = class(TForm)
-    Edit: TSynEdit;
-    Files: TFileListBox;
-    DirectoryList: TListBox;
+    GolangEdit: TSynEdit;
+    FilesList: TFileListBox;
+    FoldersList: TListBox;
+    GolangEditPanel: TPanel;
+    ToolbarSpacer: TLabel;
+    PreferencesButton: TToolButton;
+    RunButton: TToolButton;
+    RunMemo: TMemo;
+    RunTestButton: TToolButton;
+    ToolBar: TToolBar;
+    ToolbarImages: TImageList;
     LeftPanel: TPanel;
     MainMenu: TMainMenu;
-    MenuItem1: TMenuItem;
-    MenuItem2: TMenuItem;
-    MenuItem3: TMenuItem;
+    CodePreviewMenuItem: TMenuItem;
+    AboutCodePreviewMenuItem: TMenuItem;
+    SeparatorMenuItem: TMenuItem;
+    StatusBar: TStatusBar;
+    ToolbarPanel: TPanel;
+    CancelButton: TToolButton;
+    ToolButton3: TToolButton;
+    WindowMenuItem: TMenuItem;
+    MinimiseMenuItem: TMenuItem;
+    SeparatorMenuItem2: TMenuItem;
+    MainWindowMenuItem: TMenuItem;
+    PreferencesMenuItem2: TMenuItem;
     PreferencesMenuItem: TMenuItem;
-    Panel3: TPanel;
+    ParentButtonPanel: TPanel;
     ParentDirButton: TSpeedButton;
     HorzSplitter: TSplitter;
     VertSplitter: TSplitter;
     Syntax: TcaSynGolangSyn;
-    procedure DirectoryListClick(Sender: TObject);
-    procedure FilesClick(Sender: TObject);
+    procedure FilesListClick(Sender: TObject);
+    procedure FoldersListMouseUp(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure GolangEditPanelPaint(Sender: TObject);
+    procedure MainWindowMenuItemClick(Sender: TObject);
+    procedure MinimiseMenuItemClick(Sender: TObject);
+    procedure PreferencesMenuItem2Click(Sender: TObject);
     procedure PreferencesMenuItemClick(Sender: TObject);
     procedure ParentDirButtonClick(Sender: TObject);
+    procedure RunButtonClick(Sender: TObject);
+    procedure RunTestButtonClick(Sender: TObject);
     procedure SyntaxGetConfigPath(Sender: TObject; var AConfigPath: string);
+    procedure PreferencesButtonClick(Sender: TObject);
+    procedure CancelButtonClick(Sender: TObject);
+    procedure ToolbarPanelPaint(Sender: TObject);
   private
     FDirectories: TStrings;
     FRoot: string;
+    FGoRoot: String;
+    FPreferencesForm: TPreferencesForm;
     function GetConfigPath: string;
+    procedure AppShowHintEvent(var HintStr: string; var CanShow: Boolean; var HintInfo: THintInfo);
+    procedure ColorGridChangedEvent(Sender: TObject);
+    procedure FilesFontChangedEvent(Sender: TObject; AFont: TFont);
+    procedure FoldersFontChangedEvent(Sender: TObject; AFont: TFont);
+    procedure GolangFontChangedEvent(Sender: TObject; AFont: TFont);
+    procedure LaunchPreferencesForm;
+    procedure LoadDirectories;
     procedure LoadConfig;
     procedure LoadColorConfig;
     procedure SaveConfig;
-    procedure LoadDirectories;
     procedure UpdateCaption;
     procedure SearcherFoundDirectory(FileIterator: TFileIterator);
+    procedure UpdateToolbarButtonState;
+    procedure RunGolang(const AFileName: string);
+    procedure UpdateDirectory(const ADirectory: string);
   end;
 
 var
@@ -90,7 +127,11 @@ implementation
 
 procedure TCodePreviewForm.FormCreate(Sender: TObject);
 begin
-  MenuItem1.Caption := #$EF#$A3#$BF;
+  CodePreviewMenuItem.Caption := #$EF#$A3#$BF;
+  FPreferencesForm := TPreferencesForm.Create(Application);
+  Application.OnShowHint := @AppShowHintEvent;
+  Application.ShowHint := True;
+  DbgMethod(dmForm);
 end;
 
 procedure TCodePreviewForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
@@ -99,48 +140,62 @@ begin
   FDirectories.Free;
 end;
 
-procedure TCodePreviewForm.DirectoryListClick(Sender: TObject);
+procedure TCodePreviewForm.FilesListClick(Sender: TObject);
+begin
+  GolangEdit.Lines.LoadFromFile(FilesList.FileName);
+  UpdateToolbarButtonState;
+  UpdateCaption;
+end;
+
+procedure TCodePreviewForm.FoldersListMouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
 var
   Index: Integer;
 begin
-  Index := DirectoryList.ItemIndex;
+  Index := FoldersList.ItemIndex;
   FRoot := FDirectories[Index];
-  Files.Directory := FRoot;
-  UpdateCaption;
-  LoadDirectories;
-end;
-
-procedure TCodePreviewForm.FilesClick(Sender: TObject);
-begin
-  Edit.Lines.LoadFromFile(Files.FileName);
-  UpdateCaption;
+  FoldersList.Invalidate;
+  Application.ProcessMessages;
+  Sleep(600);
+  UpdateDirectory(FRoot);
 end;
 
 procedure TCodePreviewForm.FormShow(Sender: TObject);
 begin
   LoadConfig;
+  RunMemo.Font := GolangEdit.Font;
+  RunMemo.Font.Color := Syntax.IdentifierAttri.Foreground;
+  RunMemo.Color := Syntax.SpaceAttri.Background;
+  RunMemo.Align := alClient;
+  RunMemo.Visible := False;
+  GolangEditPanel.Color := Syntax.SpaceAttri.Background;
   FDirectories := TStringList.Create;
-  Files.Directory := FRoot;
-  LoadDirectories;
+  UpdateDirectory(FRoot);
   LoadColorConfig;
 end;
 
-procedure TCodePreviewForm.PreferencesMenuItemClick(Sender: TObject);
-var
-  PreferencesForm: TPreferencesForm;
+procedure TCodePreviewForm.GolangEditPanelPaint(Sender: TObject);
 begin
-  PreferencesForm := TPreferencesForm.Create(nil);
-  try
-    PreferencesForm.ColorConfig := Syntax.ColorConfig;
-    PreferencesForm.ShowModal;
-    if PreferencesForm.Modified then
-      begin
-        Syntax.ColorConfig := PreferencesForm.ColorConfig;
-        Syntax.SaveConfig(GetConfigPath + 'colorconfig.json');
-      end;
-  finally
-    PreferencesForm.Free;
-  end;
+  GolangEditPanel.Canvas.FloodFill(1, 1, clBtnFace, TFillStyle.fsSurface);
+end;
+
+procedure TCodePreviewForm.MinimiseMenuItemClick(Sender: TObject);
+begin
+  Application.Minimize;
+end;
+
+procedure TCodePreviewForm.PreferencesMenuItem2Click(Sender: TObject);
+begin
+  LaunchPreferencesForm;
+end;
+
+procedure TCodePreviewForm.MainWindowMenuItemClick(Sender: TObject);
+begin
+  Show;
+end;
+
+procedure TCodePreviewForm.PreferencesMenuItemClick(Sender: TObject);
+begin
+  LaunchPreferencesForm;
 end;
 
 procedure TCodePreviewForm.ParentDirButtonClick(Sender: TObject);
@@ -148,14 +203,39 @@ begin
   FRoot := ExtractFilePath(ExcludeTrailingPathDelimiter(FRoot));
   if FRoot[Length(FRoot)] = '/' then
     Delete(FRoot, Length(FRoot), 1);
-  Files.Directory := FRoot;
-  UpdateCaption;
-  LoadDirectories;
+  UpdateDirectory(FRoot);
+end;
+
+procedure TCodePreviewForm.RunButtonClick(Sender: TObject);
+begin
+  RunGolang(FilesList.FileName);
+end;
+
+procedure TCodePreviewForm.RunTestButtonClick(Sender: TObject);
+begin
+  RunGolang('');
 end;
 
 procedure TCodePreviewForm.SyntaxGetConfigPath(Sender: TObject; var AConfigPath: string);
 begin
   AConfigPath := GetConfigPath;
+end;
+
+procedure TCodePreviewForm.PreferencesButtonClick(Sender: TObject);
+begin
+  LaunchPreferencesForm;
+end;
+
+procedure TCodePreviewForm.CancelButtonClick(Sender: TObject);
+begin
+  RunMemo.Visible := False;
+  GolangEdit.Visible := True;
+  UpdateToolbarButtonState;
+end;
+
+procedure TCodePreviewForm.ToolbarPanelPaint(Sender: TObject);
+begin
+  ToolbarPanel.Canvas.FloodFill(1, 1, clBtnFace, TFillStyle.fsSurface);
 end;
 
 function TCodePreviewForm.GetConfigPath: string;
@@ -165,6 +245,45 @@ begin
   {$ELSE}
   Result := Utils.AppPath;
   {$ENDIF}
+end;
+
+procedure TCodePreviewForm.FilesFontChangedEvent(Sender: TObject; AFont: TFont);
+begin
+  FilesList.Font.Assign(AFont);
+end;
+
+procedure TCodePreviewForm.ColorGridChangedEvent(Sender: TObject);
+begin
+  Syntax.SaveConfig(GetConfigPath + 'colorconfig.json');
+  Syntax.LoadConfig(GetConfigPath + 'colorconfig.json');
+end;
+
+procedure TCodePreviewForm.AppShowHintEvent(var HintStr: string; var CanShow: Boolean; var HintInfo: THintInfo);
+begin
+  HintInfo.HintWindowClass := TcaHint;
+  HintInfo.HintColor := clSkyBlue;
+  CanShow := True;
+end;
+
+procedure TCodePreviewForm.FoldersFontChangedEvent(Sender: TObject; AFont: TFont);
+begin
+  FoldersList.Font.Assign(AFont);
+end;
+
+procedure TCodePreviewForm.GolangFontChangedEvent(Sender: TObject; AFont: TFont);
+begin
+  GolangEdit.Font.Assign(AFont);
+end;
+
+procedure TCodePreviewForm.LaunchPreferencesForm;
+begin
+  FPreferencesForm.ColorConfig := Syntax.ColorConfig;
+  FPreferencesForm.OnFilesFontChanged := @FilesFontChangedEvent;
+  FPreferencesForm.OnFoldersFontChanged := @FoldersFontChangedEvent;
+  FPreferencesForm.OnGolangFontChanged := @GolangFontChangedEvent;
+  FPreferencesForm.SetFonts(FilesList.Font, FoldersList.Font, GolangEdit.Font);
+  FPreferencesForm.OnColorGridChanged := @ColorGridChangedEvent;
+  FPreferencesForm.Show;
 end;
 
 procedure TCodePreviewForm.LoadColorConfig;
@@ -190,12 +309,23 @@ begin
     FRoot := C.StrProp['root'];
     if Length(FRoot) = 0 then
       FRoot := C.StrProp['gopath'];
-    // files
-    C.Group := 'files';
-    Files.Height := C.IntProp['height'];
+    FGoRoot := C.StrProp['goroot'] + '/bin/go';
+    // filesList
+    C.Group := 'filesList';
+    FilesList.Height := C.IntProp['height'];
+    FilesList.Font.Name := C.StrProp['fontName'];
+    FilesList.Font.Size := C.IntProp['fontSize'];
     // leftPanel
     C.Group := 'leftPanel';
     LeftPanel.Width := C.IntProp['width'];
+    // foldersList
+    C.Group := 'foldersList';
+    FoldersList.Font.Name := C.StrProp['fontName'];
+    FoldersList.Font.Size := C.IntProp['fontSize'];
+    // golangEdit
+    C.Group := 'golangEdit';
+    GolangEdit.Font.Name := C.StrProp['fontName'];
+    GolangEdit.Font.Size := C.IntProp['fontSize'];
     UpdateCaption;
   finally
     C.Free;
@@ -218,12 +348,22 @@ begin
     // paths
     C.Group := 'paths';
     C.StrProp['root'] := FRoot;
-    // files
-    C.Group := 'files';
-    C.IntProp['height'] := Files.Height;
+    // filesList
+    C.Group := 'filesList';
+    C.IntProp['height'] := FilesList.Height;
+    C.StrProp['fontName'] := FilesList.Font.Name;
+    C.IntProp['fontSize'] := FilesList.Font.Size;
     // leftPanel
     C.Group := 'leftPanel';
     C.IntProp['width'] := LeftPanel.Width;
+    // foldersList
+    C.Group := 'foldersList';
+    C.StrProp['fontName'] := FoldersList.Font.Name;
+    C.IntProp['fontSize'] := FoldersList.Font.Size;
+    // golangEdit
+    C.Group := 'golangEdit';
+    C.StrProp['fontName'] := GolangEdit.Font.Name;
+    C.IntProp['fontSize'] := GolangEdit.Font.Size;
   finally
     C.Free;
   end;
@@ -236,7 +376,7 @@ var
   FileName: string;
 begin
   FDirectories.Clear;
-  DirectoryList.Clear;
+  FoldersList.Clear;
   Searcher := TFileSearcher.Create;
   try
     Searcher.OnDirectoryFound := @SearcherFoundDirectory;
@@ -245,7 +385,7 @@ begin
       begin
         FileName := FDirectories[Index];
         Delete(FileName, 1, Length(FRoot) + 1);
-        DirectoryList.AddItem(FileName, TObject(Index));
+        FoldersList.AddItem(FileName, TObject(Index));
       end;
   finally
     Searcher.Free;
@@ -262,13 +402,86 @@ begin
     FDirectories.Add(FileIterator.FileName);
 end;
 
+procedure TCodePreviewForm.UpdateToolbarButtonState;
+var
+  IsTest: Boolean;
+  FileName: string;
+begin
+  IsTest := False;
+  for FileName in FilesList.Items do
+    begin
+      if StringUtils.EndsWith(LowerCase(ExtractFileNameOnly(FileName)), '_test') then
+        begin
+          IsTest := True;
+          Break;
+        end;
+    end;
+  RunTestButton.Enabled := IsTest;
+  RunButton.Enabled := FilesList.ItemIndex >= 0;
+  CancelButton.Enabled := RunMemo.Visible;
+end;
+
+procedure TCodePreviewForm.RunGolang(const AFileName: string);
+const
+  BUF_SIZE = 2048;
+var
+  AProcess: TProcess;
+  OutputStream: TStream;
+  BytesRead: Longint;
+  Buffer: array[1..BUF_SIZE] of byte;
+begin
+  GolangEdit.Visible := False;
+  RunMemo.Visible := True;
+  UpdateToolbarButtonState;
+  AProcess := TProcess.Create(nil);
+  // Need a way of letting the underlying terminal know which directory we are in...
+  try
+    AProcess.Executable := FGoRoot;
+    if AFileName = '' then
+      begin
+        AProcess.Parameters.Add('test');
+        AProcess.CurrentDirectory := FRoot;
+      end
+    else
+      begin
+        AProcess.Parameters.Add('run');
+        AProcess.Parameters.Add(AFileName);
+      end;
+    AProcess.Options := [poUsePipes];
+    AProcess.Execute;
+    OutputStream := TMemoryStream.Create;
+    try
+      repeat
+        BytesRead := AProcess.Output.Read(Buffer, BUF_SIZE);
+        OutputStream.Write(Buffer, BytesRead)
+      until BytesRead = 0;
+      OutputStream.Position := 0;
+      RunMemo.Lines.LoadFromStream(OutputStream);
+    finally
+      OutputStream.Free;
+    end;
+  finally
+    DebugLn('AProcess ExitStatus: ', IntToStr(AProcess.ExitStatus));
+    DebugLn('  AProcess ExitCode: ', IntToStr(AProcess.ExitCode));
+    AProcess.Free;
+  end;
+end;
+
+procedure TCodePreviewForm.UpdateDirectory(const ADirectory: string);
+begin
+  FilesList.Directory := FRoot;
+  UpdateCaption;
+  LoadDirectories;
+  UpdateToolbarButtonState;
+end;
+
 procedure TCodePreviewForm.UpdateCaption;
 var
   S: string;
 begin
   S := 'CodePreview - ' + FRoot;
-  if Files.FileName <> '' then
-    S := 'CodePreview - ' + Files.FileName;
+  if FilesList.FileName <> '' then
+    S := 'CodePreview - ' + FilesList.FileName;
   Caption := S;
 end;
 

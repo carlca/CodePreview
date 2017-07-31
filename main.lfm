@@ -3,540 +3,19 @@ object CodePreviewForm: TCodePreviewForm
   Height = 635
   Top = 50
   Width = 889
-  ActiveControl = Edit
+  ActiveControl = GolangEdit
   Caption = 'CodePreviewForm'
   ClientHeight = 635
   ClientWidth = 889
-  Color = 3355443
+  Color = clBtnShadow
   Menu = MainMenu
   OnClose = FormClose
   OnCreate = FormCreate
   OnShow = FormShow
-  LCLVersion = '1.8.0.3'
   Visible = False
-  inline Edit: TSynEdit
-    Left = 180
-    Height = 635
-    Top = 0
-    Width = 709
-    Align = alClient
-    Color = 4342338
-    Font.Color = clAqua
-    Font.Height = -22
-    Font.Name = 'Ubuntu Mono'
-    Font.Pitch = fpFixed
-    Font.Quality = fqAntialiased
-    ParentColor = False
-    ParentFont = False
-    TabOrder = 0
-    BorderStyle = bsNone
-    Gutter.Visible = False
-    Gutter.Width = 63
-    Gutter.MouseActions = <>
-    RightGutter.Width = 0
-    RightGutter.MouseActions = <>
-    Highlighter = Syntax
-    Keystrokes = <    
-      item
-        Command = ecUp
-        ShortCut = 38
-      end    
-      item
-        Command = ecSelUp
-        ShortCut = 8230
-      end    
-      item
-        Command = ecScrollUp
-        ShortCut = 16422
-      end    
-      item
-        Command = ecDown
-        ShortCut = 40
-      end    
-      item
-        Command = ecSelDown
-        ShortCut = 8232
-      end    
-      item
-        Command = ecScrollDown
-        ShortCut = 16424
-      end    
-      item
-        Command = ecLeft
-        ShortCut = 37
-      end    
-      item
-        Command = ecSelLeft
-        ShortCut = 8229
-      end    
-      item
-        Command = ecWordLeft
-        ShortCut = 16421
-      end    
-      item
-        Command = ecSelWordLeft
-        ShortCut = 24613
-      end    
-      item
-        Command = ecRight
-        ShortCut = 39
-      end    
-      item
-        Command = ecSelRight
-        ShortCut = 8231
-      end    
-      item
-        Command = ecWordRight
-        ShortCut = 16423
-      end    
-      item
-        Command = ecSelWordRight
-        ShortCut = 24615
-      end    
-      item
-        Command = ecPageDown
-        ShortCut = 34
-      end    
-      item
-        Command = ecSelPageDown
-        ShortCut = 8226
-      end    
-      item
-        Command = ecPageBottom
-        ShortCut = 16418
-      end    
-      item
-        Command = ecSelPageBottom
-        ShortCut = 24610
-      end    
-      item
-        Command = ecPageUp
-        ShortCut = 33
-      end    
-      item
-        Command = ecSelPageUp
-        ShortCut = 8225
-      end    
-      item
-        Command = ecPageTop
-        ShortCut = 16417
-      end    
-      item
-        Command = ecSelPageTop
-        ShortCut = 24609
-      end    
-      item
-        Command = ecLineStart
-        ShortCut = 36
-      end    
-      item
-        Command = ecSelLineStart
-        ShortCut = 8228
-      end    
-      item
-        Command = ecEditorTop
-        ShortCut = 16420
-      end    
-      item
-        Command = ecSelEditorTop
-        ShortCut = 24612
-      end    
-      item
-        Command = ecLineEnd
-        ShortCut = 35
-      end    
-      item
-        Command = ecSelLineEnd
-        ShortCut = 8227
-      end    
-      item
-        Command = ecEditorBottom
-        ShortCut = 16419
-      end    
-      item
-        Command = ecSelEditorBottom
-        ShortCut = 24611
-      end    
-      item
-        Command = ecToggleMode
-        ShortCut = 45
-      end    
-      item
-        Command = ecCopy
-        ShortCut = 16429
-      end    
-      item
-        Command = ecPaste
-        ShortCut = 8237
-      end    
-      item
-        Command = ecDeleteChar
-        ShortCut = 46
-      end    
-      item
-        Command = ecCut
-        ShortCut = 8238
-      end    
-      item
-        Command = ecDeleteLastChar
-        ShortCut = 8
-      end    
-      item
-        Command = ecDeleteLastChar
-        ShortCut = 8200
-      end    
-      item
-        Command = ecDeleteLastWord
-        ShortCut = 16392
-      end    
-      item
-        Command = ecUndo
-        ShortCut = 32776
-      end    
-      item
-        Command = ecRedo
-        ShortCut = 40968
-      end    
-      item
-        Command = ecLineBreak
-        ShortCut = 13
-      end    
-      item
-        Command = ecSelectAll
-        ShortCut = 16449
-      end    
-      item
-        Command = ecCopy
-        ShortCut = 16451
-      end    
-      item
-        Command = ecBlockIndent
-        ShortCut = 24649
-      end    
-      item
-        Command = ecLineBreak
-        ShortCut = 16461
-      end    
-      item
-        Command = ecInsertLine
-        ShortCut = 16462
-      end    
-      item
-        Command = ecDeleteWord
-        ShortCut = 16468
-      end    
-      item
-        Command = ecBlockUnindent
-        ShortCut = 24661
-      end    
-      item
-        Command = ecPaste
-        ShortCut = 16470
-      end    
-      item
-        Command = ecCut
-        ShortCut = 16472
-      end    
-      item
-        Command = ecDeleteLine
-        ShortCut = 16473
-      end    
-      item
-        Command = ecDeleteEOL
-        ShortCut = 24665
-      end    
-      item
-        Command = ecUndo
-        ShortCut = 16474
-      end    
-      item
-        Command = ecRedo
-        ShortCut = 24666
-      end    
-      item
-        Command = ecGotoMarker0
-        ShortCut = 16432
-      end    
-      item
-        Command = ecGotoMarker1
-        ShortCut = 16433
-      end    
-      item
-        Command = ecGotoMarker2
-        ShortCut = 16434
-      end    
-      item
-        Command = ecGotoMarker3
-        ShortCut = 16435
-      end    
-      item
-        Command = ecGotoMarker4
-        ShortCut = 16436
-      end    
-      item
-        Command = ecGotoMarker5
-        ShortCut = 16437
-      end    
-      item
-        Command = ecGotoMarker6
-        ShortCut = 16438
-      end    
-      item
-        Command = ecGotoMarker7
-        ShortCut = 16439
-      end    
-      item
-        Command = ecGotoMarker8
-        ShortCut = 16440
-      end    
-      item
-        Command = ecGotoMarker9
-        ShortCut = 16441
-      end    
-      item
-        Command = ecSetMarker0
-        ShortCut = 24624
-      end    
-      item
-        Command = ecSetMarker1
-        ShortCut = 24625
-      end    
-      item
-        Command = ecSetMarker2
-        ShortCut = 24626
-      end    
-      item
-        Command = ecSetMarker3
-        ShortCut = 24627
-      end    
-      item
-        Command = ecSetMarker4
-        ShortCut = 24628
-      end    
-      item
-        Command = ecSetMarker5
-        ShortCut = 24629
-      end    
-      item
-        Command = ecSetMarker6
-        ShortCut = 24630
-      end    
-      item
-        Command = ecSetMarker7
-        ShortCut = 24631
-      end    
-      item
-        Command = ecSetMarker8
-        ShortCut = 24632
-      end    
-      item
-        Command = ecSetMarker9
-        ShortCut = 24633
-      end    
-      item
-        Command = EcFoldLevel1
-        ShortCut = 41009
-      end    
-      item
-        Command = EcFoldLevel2
-        ShortCut = 41010
-      end    
-      item
-        Command = EcFoldLevel3
-        ShortCut = 41011
-      end    
-      item
-        Command = EcFoldLevel4
-        ShortCut = 41012
-      end    
-      item
-        Command = EcFoldLevel5
-        ShortCut = 41013
-      end    
-      item
-        Command = EcFoldLevel6
-        ShortCut = 41014
-      end    
-      item
-        Command = EcFoldLevel7
-        ShortCut = 41015
-      end    
-      item
-        Command = EcFoldLevel8
-        ShortCut = 41016
-      end    
-      item
-        Command = EcFoldLevel9
-        ShortCut = 41017
-      end    
-      item
-        Command = EcFoldLevel0
-        ShortCut = 41008
-      end    
-      item
-        Command = EcFoldCurrent
-        ShortCut = 41005
-      end    
-      item
-        Command = EcUnFoldCurrent
-        ShortCut = 41003
-      end    
-      item
-        Command = EcToggleMarkupWord
-        ShortCut = 32845
-      end    
-      item
-        Command = ecNormalSelect
-        ShortCut = 24654
-      end    
-      item
-        Command = ecColumnSelect
-        ShortCut = 24643
-      end    
-      item
-        Command = ecLineSelect
-        ShortCut = 24652
-      end    
-      item
-        Command = ecTab
-        ShortCut = 9
-      end    
-      item
-        Command = ecShiftTab
-        ShortCut = 8201
-      end    
-      item
-        Command = ecMatchBracket
-        ShortCut = 24642
-      end    
-      item
-        Command = ecColSelUp
-        ShortCut = 40998
-      end    
-      item
-        Command = ecColSelDown
-        ShortCut = 41000
-      end    
-      item
-        Command = ecColSelLeft
-        ShortCut = 40997
-      end    
-      item
-        Command = ecColSelRight
-        ShortCut = 40999
-      end    
-      item
-        Command = ecColSelPageDown
-        ShortCut = 40994
-      end    
-      item
-        Command = ecColSelPageBottom
-        ShortCut = 57378
-      end    
-      item
-        Command = ecColSelPageUp
-        ShortCut = 40993
-      end    
-      item
-        Command = ecColSelPageTop
-        ShortCut = 57377
-      end    
-      item
-        Command = ecColSelLineStart
-        ShortCut = 40996
-      end    
-      item
-        Command = ecColSelLineEnd
-        ShortCut = 40995
-      end    
-      item
-        Command = ecColSelEditorTop
-        ShortCut = 57380
-      end    
-      item
-        Command = ecColSelEditorBottom
-        ShortCut = 57379
-      end>
-    MouseActions = <>
-    MouseTextActions = <>
-    MouseSelActions = <>
-    Lines.Strings = (
-      ''
-      ''
-      ''
-      ''
-      ''
-      ''
-      ''
-      ''
-      ''
-      ''
-      ''
-      ''
-      ''
-      ''
-      ''
-    )
-    VisibleSpecialChars = [vscSpace, vscTabAtLast]
-    ScrollBars = ssVertical
-    SelectedColor.BackPriority = 50
-    SelectedColor.ForePriority = 50
-    SelectedColor.FramePriority = 50
-    SelectedColor.BoldPriority = 50
-    SelectedColor.ItalicPriority = 50
-    SelectedColor.UnderlinePriority = 50
-    SelectedColor.StrikeOutPriority = 50
-    BracketHighlightStyle = sbhsBoth
-    BracketMatchColor.Background = clNone
-    BracketMatchColor.Foreground = clNone
-    BracketMatchColor.Style = [fsBold]
-    FoldedCodeColor.Background = clNone
-    FoldedCodeColor.Foreground = clGray
-    FoldedCodeColor.FrameColor = clGray
-    MouseLinkColor.Background = clNone
-    MouseLinkColor.Foreground = clBlue
-    LineHighlightColor.Background = clNone
-    LineHighlightColor.Foreground = clNone
-    TabWidth = 4
-    inline SynLeftGutterPartList1: TSynGutterPartList
-      object SynGutterMarks1: TSynGutterMarks
-        Width = 24
-        MouseActions = <>
-      end
-      object SynGutterLineNumber1: TSynGutterLineNumber
-        Width = 23
-        MouseActions = <>
-        MarkupInfo.Background = clBtnFace
-        MarkupInfo.Foreground = clNone
-        DigitCount = 2
-        ShowOnlyLineNumbersMultiplesOf = 1
-        ZeroStart = False
-        LeadingZeros = False
-      end
-      object SynGutterChanges1: TSynGutterChanges
-        Width = 4
-        MouseActions = <>
-        ModifiedColor = 59900
-        SavedColor = clGreen
-      end
-      object SynGutterSeparator1: TSynGutterSeparator
-        Width = 2
-        MouseActions = <>
-        MarkupInfo.Background = clWhite
-        MarkupInfo.Foreground = clGray
-      end
-      object SynGutterCodeFolding1: TSynGutterCodeFolding
-        MouseActions = <>
-        MarkupInfo.Background = clNone
-        MarkupInfo.Foreground = clGray
-        MouseActionsExpanded = <>
-        MouseActionsCollapsed = <>
-      end
-    end
-  end
   object HorzSplitter: TSplitter
     Left = 170
-    Height = 635
+    Height = 619
     Top = 0
     Width = 10
     Color = 3355443
@@ -544,18 +23,18 @@ object CodePreviewForm: TCodePreviewForm
   end
   object LeftPanel: TPanel
     Left = 0
-    Height = 635
+    Height = 619
     Top = 0
     Width = 170
     Align = alLeft
     BevelOuter = bvNone
     Caption = 'LeftPanel'
-    ClientHeight = 635
+    ClientHeight = 619
     ClientWidth = 170
     Color = clBtnFace
     ParentColor = False
-    TabOrder = 2
-    object Files: TFileListBox
+    TabOrder = 1
+    object FilesList: TFileListBox
       Left = 0
       Height = 299
       Top = 0
@@ -565,12 +44,9 @@ object CodePreviewForm: TCodePreviewForm
       Color = clBtnFace
       Directory = '/'
       ExtendedSelect = False
-      Font.Color = clSkyBlue
-      Font.Height = -22
-      Font.Name = 'Ubuntu Mono'
       ItemHeight = 0
       Mask = '*.go'
-      OnClick = FilesClick
+      OnClick = FilesListClick
       ParentFont = False
       TabOrder = 0
     end
@@ -585,9 +61,9 @@ object CodePreviewForm: TCodePreviewForm
       ParentColor = False
       ResizeAnchor = akTop
     end
-    object DirectoryList: TListBox
+    object FoldersList: TListBox
       Left = 0
-      Height = 276
+      Height = 260
       Top = 359
       Width = 170
       Align = alClient
@@ -597,12 +73,11 @@ object CodePreviewForm: TCodePreviewForm
       Font.Height = -22
       Font.Name = 'Ubuntu Mono'
       ItemHeight = 0
-      OnClick = DirectoryListClick
+      OnMouseUp = FoldersListMouseUp
       ParentFont = False
-      Style = lbVirtual
       TabOrder = 2
     end
-    object Panel3: TPanel
+    object ParentButtonPanel: TPanel
       Left = 0
       Height = 50
       Top = 309
@@ -618,6 +93,7 @@ object CodePreviewForm: TCodePreviewForm
       object ParentDirButton: TSpeedButton
         Left = 8
         Height = 34
+        Hint = 'Navigate to Parent Folder'
         Top = 8
         Width = 154
         Align = alClient
@@ -626,6 +102,649 @@ object CodePreviewForm: TCodePreviewForm
         OnClick = ParentDirButtonClick
         ParentFont = False
       end
+    end
+  end
+  object StatusBar: TStatusBar
+    Left = 0
+    Height = 16
+    Top = 619
+    Width = 889
+    AutoSize = False
+    Panels = <>
+    SimplePanel = False
+  end
+  object GolangEditPanel: TPanel
+    Left = 180
+    Height = 619
+    Top = 0
+    Width = 709
+    Align = alClient
+    BevelOuter = bvNone
+    ClientHeight = 619
+    ClientWidth = 709
+    Color = clBtnShadow
+    ParentColor = False
+    TabOrder = 3
+    OnPaint = GolangEditPanelPaint
+    inline GolangEdit: TSynEdit
+      Left = 0
+      Height = 595
+      Top = 0
+      Width = 709
+      Align = alClient
+      Color = 4342338
+      Font.Color = clAqua
+      Font.Height = -22
+      Font.Name = 'Ubuntu Mono'
+      Font.Pitch = fpFixed
+      Font.Quality = fqAntialiased
+      ParentColor = False
+      ParentFont = False
+      TabOrder = 0
+      BorderStyle = bsNone
+      Gutter.Visible = False
+      Gutter.Width = 63
+      Gutter.MouseActions = <>
+      RightGutter.Width = 0
+      RightGutter.MouseActions = <>
+      Highlighter = Syntax
+      Keystrokes = <      
+        item
+          Command = ecUp
+          ShortCut = 38
+        end      
+        item
+          Command = ecSelUp
+          ShortCut = 8230
+        end      
+        item
+          Command = ecScrollUp
+          ShortCut = 16422
+        end      
+        item
+          Command = ecDown
+          ShortCut = 40
+        end      
+        item
+          Command = ecSelDown
+          ShortCut = 8232
+        end      
+        item
+          Command = ecScrollDown
+          ShortCut = 16424
+        end      
+        item
+          Command = ecLeft
+          ShortCut = 37
+        end      
+        item
+          Command = ecSelLeft
+          ShortCut = 8229
+        end      
+        item
+          Command = ecWordLeft
+          ShortCut = 16421
+        end      
+        item
+          Command = ecSelWordLeft
+          ShortCut = 24613
+        end      
+        item
+          Command = ecRight
+          ShortCut = 39
+        end      
+        item
+          Command = ecSelRight
+          ShortCut = 8231
+        end      
+        item
+          Command = ecWordRight
+          ShortCut = 16423
+        end      
+        item
+          Command = ecSelWordRight
+          ShortCut = 24615
+        end      
+        item
+          Command = ecPageDown
+          ShortCut = 34
+        end      
+        item
+          Command = ecSelPageDown
+          ShortCut = 8226
+        end      
+        item
+          Command = ecPageBottom
+          ShortCut = 16418
+        end      
+        item
+          Command = ecSelPageBottom
+          ShortCut = 24610
+        end      
+        item
+          Command = ecPageUp
+          ShortCut = 33
+        end      
+        item
+          Command = ecSelPageUp
+          ShortCut = 8225
+        end      
+        item
+          Command = ecPageTop
+          ShortCut = 16417
+        end      
+        item
+          Command = ecSelPageTop
+          ShortCut = 24609
+        end      
+        item
+          Command = ecLineStart
+          ShortCut = 36
+        end      
+        item
+          Command = ecSelLineStart
+          ShortCut = 8228
+        end      
+        item
+          Command = ecEditorTop
+          ShortCut = 16420
+        end      
+        item
+          Command = ecSelEditorTop
+          ShortCut = 24612
+        end      
+        item
+          Command = ecLineEnd
+          ShortCut = 35
+        end      
+        item
+          Command = ecSelLineEnd
+          ShortCut = 8227
+        end      
+        item
+          Command = ecEditorBottom
+          ShortCut = 16419
+        end      
+        item
+          Command = ecSelEditorBottom
+          ShortCut = 24611
+        end      
+        item
+          Command = ecToggleMode
+          ShortCut = 45
+        end      
+        item
+          Command = ecCopy
+          ShortCut = 16429
+        end      
+        item
+          Command = ecPaste
+          ShortCut = 8237
+        end      
+        item
+          Command = ecDeleteChar
+          ShortCut = 46
+        end      
+        item
+          Command = ecCut
+          ShortCut = 8238
+        end      
+        item
+          Command = ecDeleteLastChar
+          ShortCut = 8
+        end      
+        item
+          Command = ecDeleteLastChar
+          ShortCut = 8200
+        end      
+        item
+          Command = ecDeleteLastWord
+          ShortCut = 16392
+        end      
+        item
+          Command = ecUndo
+          ShortCut = 32776
+        end      
+        item
+          Command = ecRedo
+          ShortCut = 40968
+        end      
+        item
+          Command = ecLineBreak
+          ShortCut = 13
+        end      
+        item
+          Command = ecSelectAll
+          ShortCut = 16449
+        end      
+        item
+          Command = ecCopy
+          ShortCut = 16451
+        end      
+        item
+          Command = ecBlockIndent
+          ShortCut = 24649
+        end      
+        item
+          Command = ecLineBreak
+          ShortCut = 16461
+        end      
+        item
+          Command = ecInsertLine
+          ShortCut = 16462
+        end      
+        item
+          Command = ecDeleteWord
+          ShortCut = 16468
+        end      
+        item
+          Command = ecBlockUnindent
+          ShortCut = 24661
+        end      
+        item
+          Command = ecPaste
+          ShortCut = 16470
+        end      
+        item
+          Command = ecCut
+          ShortCut = 16472
+        end      
+        item
+          Command = ecDeleteLine
+          ShortCut = 16473
+        end      
+        item
+          Command = ecDeleteEOL
+          ShortCut = 24665
+        end      
+        item
+          Command = ecUndo
+          ShortCut = 16474
+        end      
+        item
+          Command = ecRedo
+          ShortCut = 24666
+        end      
+        item
+          Command = ecGotoMarker0
+          ShortCut = 16432
+        end      
+        item
+          Command = ecGotoMarker1
+          ShortCut = 16433
+        end      
+        item
+          Command = ecGotoMarker2
+          ShortCut = 16434
+        end      
+        item
+          Command = ecGotoMarker3
+          ShortCut = 16435
+        end      
+        item
+          Command = ecGotoMarker4
+          ShortCut = 16436
+        end      
+        item
+          Command = ecGotoMarker5
+          ShortCut = 16437
+        end      
+        item
+          Command = ecGotoMarker6
+          ShortCut = 16438
+        end      
+        item
+          Command = ecGotoMarker7
+          ShortCut = 16439
+        end      
+        item
+          Command = ecGotoMarker8
+          ShortCut = 16440
+        end      
+        item
+          Command = ecGotoMarker9
+          ShortCut = 16441
+        end      
+        item
+          Command = ecSetMarker0
+          ShortCut = 24624
+        end      
+        item
+          Command = ecSetMarker1
+          ShortCut = 24625
+        end      
+        item
+          Command = ecSetMarker2
+          ShortCut = 24626
+        end      
+        item
+          Command = ecSetMarker3
+          ShortCut = 24627
+        end      
+        item
+          Command = ecSetMarker4
+          ShortCut = 24628
+        end      
+        item
+          Command = ecSetMarker5
+          ShortCut = 24629
+        end      
+        item
+          Command = ecSetMarker6
+          ShortCut = 24630
+        end      
+        item
+          Command = ecSetMarker7
+          ShortCut = 24631
+        end      
+        item
+          Command = ecSetMarker8
+          ShortCut = 24632
+        end      
+        item
+          Command = ecSetMarker9
+          ShortCut = 24633
+        end      
+        item
+          Command = EcFoldLevel1
+          ShortCut = 41009
+        end      
+        item
+          Command = EcFoldLevel2
+          ShortCut = 41010
+        end      
+        item
+          Command = EcFoldLevel3
+          ShortCut = 41011
+        end      
+        item
+          Command = EcFoldLevel4
+          ShortCut = 41012
+        end      
+        item
+          Command = EcFoldLevel5
+          ShortCut = 41013
+        end      
+        item
+          Command = EcFoldLevel6
+          ShortCut = 41014
+        end      
+        item
+          Command = EcFoldLevel7
+          ShortCut = 41015
+        end      
+        item
+          Command = EcFoldLevel8
+          ShortCut = 41016
+        end      
+        item
+          Command = EcFoldLevel9
+          ShortCut = 41017
+        end      
+        item
+          Command = EcFoldLevel0
+          ShortCut = 41008
+        end      
+        item
+          Command = EcFoldCurrent
+          ShortCut = 41005
+        end      
+        item
+          Command = EcUnFoldCurrent
+          ShortCut = 41003
+        end      
+        item
+          Command = EcToggleMarkupWord
+          ShortCut = 32845
+        end      
+        item
+          Command = ecNormalSelect
+          ShortCut = 24654
+        end      
+        item
+          Command = ecColumnSelect
+          ShortCut = 24643
+        end      
+        item
+          Command = ecLineSelect
+          ShortCut = 24652
+        end      
+        item
+          Command = ecTab
+          ShortCut = 9
+        end      
+        item
+          Command = ecShiftTab
+          ShortCut = 8201
+        end      
+        item
+          Command = ecMatchBracket
+          ShortCut = 24642
+        end      
+        item
+          Command = ecColSelUp
+          ShortCut = 40998
+        end      
+        item
+          Command = ecColSelDown
+          ShortCut = 41000
+        end      
+        item
+          Command = ecColSelLeft
+          ShortCut = 40997
+        end      
+        item
+          Command = ecColSelRight
+          ShortCut = 40999
+        end      
+        item
+          Command = ecColSelPageDown
+          ShortCut = 40994
+        end      
+        item
+          Command = ecColSelPageBottom
+          ShortCut = 57378
+        end      
+        item
+          Command = ecColSelPageUp
+          ShortCut = 40993
+        end      
+        item
+          Command = ecColSelPageTop
+          ShortCut = 57377
+        end      
+        item
+          Command = ecColSelLineStart
+          ShortCut = 40996
+        end      
+        item
+          Command = ecColSelLineEnd
+          ShortCut = 40995
+        end      
+        item
+          Command = ecColSelEditorTop
+          ShortCut = 57380
+        end      
+        item
+          Command = ecColSelEditorBottom
+          ShortCut = 57379
+        end>
+      MouseActions = <>
+      MouseTextActions = <>
+      MouseSelActions = <>
+      Lines.Strings = (
+        ''
+        ''
+        ''
+        ''
+        ''
+        ''
+        ''
+        ''
+        ''
+        ''
+        ''
+        ''
+        ''
+        ''
+        ''
+      )
+      VisibleSpecialChars = [vscSpace, vscTabAtLast]
+      ScrollBars = ssVertical
+      SelectedColor.BackPriority = 50
+      SelectedColor.ForePriority = 50
+      SelectedColor.FramePriority = 50
+      SelectedColor.BoldPriority = 50
+      SelectedColor.ItalicPriority = 50
+      SelectedColor.UnderlinePriority = 50
+      SelectedColor.StrikeOutPriority = 50
+      BracketHighlightStyle = sbhsBoth
+      BracketMatchColor.Background = clNone
+      BracketMatchColor.Foreground = clNone
+      BracketMatchColor.Style = [fsBold]
+      FoldedCodeColor.Background = clNone
+      FoldedCodeColor.Foreground = clGray
+      FoldedCodeColor.FrameColor = clGray
+      MouseLinkColor.Background = clNone
+      MouseLinkColor.Foreground = clBlue
+      LineHighlightColor.Background = clNone
+      LineHighlightColor.Foreground = clNone
+      TabWidth = 4
+      inline SynLeftGutterPartList1: TSynGutterPartList
+        object SynGutterMarks1: TSynGutterMarks
+          Width = 24
+          MouseActions = <>
+        end
+        object SynGutterLineNumber1: TSynGutterLineNumber
+          Width = 23
+          MouseActions = <>
+          MarkupInfo.Background = clBtnFace
+          MarkupInfo.Foreground = clNone
+          DigitCount = 2
+          ShowOnlyLineNumbersMultiplesOf = 1
+          ZeroStart = False
+          LeadingZeros = False
+        end
+        object SynGutterChanges1: TSynGutterChanges
+          Width = 4
+          MouseActions = <>
+          ModifiedColor = 59900
+          SavedColor = clGreen
+        end
+        object SynGutterSeparator1: TSynGutterSeparator
+          Width = 2
+          MouseActions = <>
+          MarkupInfo.Background = clWhite
+          MarkupInfo.Foreground = clGray
+        end
+        object SynGutterCodeFolding1: TSynGutterCodeFolding
+          MouseActions = <>
+          MarkupInfo.Background = clNone
+          MarkupInfo.Foreground = clGray
+          MouseActionsExpanded = <>
+          MouseActionsCollapsed = <>
+        end
+      end
+    end
+    object ToolbarPanel: TPanel
+      Left = 0
+      Height = 24
+      Top = 595
+      Width = 709
+      Align = alBottom
+      BevelColor = clBtnShadow
+      ClientHeight = 24
+      ClientWidth = 709
+      Color = clBtnShadow
+      ParentColor = False
+      TabOrder = 1
+      OnPaint = ToolbarPanelPaint
+      object ToolBar: TToolBar
+        Left = 0
+        Height = 22
+        Top = 1
+        Width = 707
+        Align = alNone
+        Color = clBtnShadow
+        EdgeBorders = []
+        EdgeInner = esNone
+        EdgeOuter = esNone
+        Images = ToolbarImages
+        List = True
+        ParentColor = False
+        TabOrder = 0
+        object PreferencesButton: TToolButton
+          Left = 79
+          Hint = 'Preferences'
+          Top = 0
+          Caption = 'PreferencesButton'
+          ImageIndex = 0
+          OnClick = PreferencesButtonClick
+          ParentShowHint = False
+          ShowHint = True
+        end
+        object RunButton: TToolButton
+          Left = 2
+          Hint = 'Run'
+          Top = 0
+          Caption = 'RunButton'
+          ImageIndex = 1
+          OnClick = RunButtonClick
+          ParentShowHint = False
+          ShowHint = True
+        end
+        object RunTestButton: TToolButton
+          Left = 25
+          Hint = 'Test Run'
+          Top = 0
+          Caption = 'RunTestButton'
+          Enabled = False
+          ImageIndex = 2
+          OnClick = RunTestButtonClick
+          ParentShowHint = False
+          ShowHint = True
+        end
+        object ToolButton3: TToolButton
+          Left = 71
+          Height = 22
+          Top = 0
+          Style = tbsSeparator
+        end
+        object CancelButton: TToolButton
+          Left = 48
+          Hint = 'Cancel Run'
+          Top = 0
+          Caption = 'CancelButton'
+          Enabled = False
+          ImageIndex = 3
+          OnClick = CancelButtonClick
+          ParentShowHint = False
+          ShowHint = True
+        end
+        object ToolbarSpacer: TLabel
+          Left = 1
+          Height = 22
+          Top = 0
+          Width = 1
+          Align = alLeft
+          AutoSize = False
+          Color = clBtnShadow
+          ParentColor = False
+          Transparent = False
+        end
+      end
+    end
+    object RunMemo: TMemo
+      Left = 432
+      Height = 174
+      Top = 308
+      Width = 206
+      BorderStyle = bsNone
+      Lines.Strings = (
+        'Test Run'
+      )
+      ScrollBars = ssAutoVertical
+      TabOrder = 2
     end
   end
   object Syntax: TcaSynGolangSyn
@@ -707,12 +826,12 @@ object CodePreviewForm: TCodePreviewForm
   object MainMenu: TMainMenu
     left = 293
     top = 82
-    object MenuItem1: TMenuItem
+    object CodePreviewMenuItem: TMenuItem
       Caption = 'CodePreview'
-      object MenuItem2: TMenuItem
+      object AboutCodePreviewMenuItem: TMenuItem
         Caption = 'About CodePreview'
       end
-      object MenuItem3: TMenuItem
+      object SeparatorMenuItem: TMenuItem
         Caption = '-'
       end
       object PreferencesMenuItem: TMenuItem
@@ -721,5 +840,160 @@ object CodePreviewForm: TCodePreviewForm
         OnClick = PreferencesMenuItemClick
       end
     end
+    object WindowMenuItem: TMenuItem
+      Caption = 'Window'
+      object MinimiseMenuItem: TMenuItem
+        Caption = 'Minimise'
+        ShortCut = 4173
+        ShortCutKey2 = 16449
+        OnClick = MinimiseMenuItemClick
+      end
+      object SeparatorMenuItem2: TMenuItem
+        Caption = '-'
+      end
+      object MainWindowMenuItem: TMenuItem
+        Caption = 'Main Window'
+        OnClick = MainWindowMenuItemClick
+      end
+      object PreferencesMenuItem2: TMenuItem
+        Caption = 'Preferences'
+        OnClick = PreferencesMenuItem2Click
+      end
+    end
+  end
+  object ToolbarImages: TImageList
+    left = 372
+    top = 532
+    Bitmap = {
+      4C69040000001000000010000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      000000000000858A88FF858A88FF858A88FF0000000000000000000000000000
+      000000000000000000000000000000000000000000005357554C858A88FF858A
+      88FF5357554C858A88FFECEEEEFF858A88FF5357554C858A88FF858A88FF0000
+      00000000000000000000000000000000000000000000858A88FFECEEEEFFBEC0
+      C0FF858A88FFA0A3A2FFCFD7D3FFA0A3A2FF858A88FFBEC0C0FFECEEEEFF858A
+      88FF0000000000000000000000000000000000000000858A88FFBEC0C0FFCFD7
+      D3FFCFD7D3FFCFD7D3FFCFD7D3FFCFD7D3FFCFD7D3FFCFD7D3FFBEC0C0FF858A
+      88FF00000000000000000000000000000000000000005357554C858A88FFCFD7
+      D3FFB4BAB8FF848A88F1939997FF848A88F1B9BFBDFFCFD7D3FF858A88FF5357
+      554C00000000000000000000000000000000858A88FF858A88FFA0A3A2FFCFD7
+      D3FF848A88F16F7371A15357554D65696789878B89EACFD7D3FFA0A3A2FF858A
+      88FF858A88FF000000000000000000000000858A88FFECEEEEFFCFD7D3FFCFD7
+      D3FF939997FF5357554D000000005357554D939997FFCFD7D3FFCFD7D3FFECEE
+      EEFF858A88FF000000000000000000000000858A88FF858A88FFA0A3A2FFCFD7
+      D3FF8A8F8DF68C918FC35357554D757977B4848A88F1CFD7D3FFA0A3A2FF858A
+      88FF858A88FF000000000000000000000000000000005357554C858A88FFECEE
+      EEFFB4BAB8FF8A8F8DF6939997FF848A88F1C3CAC7FFCFD7D3FF858A88FF5357
+      554C0000000000000000000000000000000000000000858A88FFBEC0C0FFCFD7
+      D3FFCFD7D3FFCFD7D3FFCFD7D3FFCFD7D3FFCFD7D3FFCFD7D3FFBEC0C0FF858A
+      88FF0000000000000000000000000000000000000000858A88FFECEEEEFFBEC0
+      C0FF858A88FFA0A3A2FFCFD7D3FFA0A3A2FF858A88FFBEC0C0FFECEEEEFF858A
+      88FF000000000000000000000000000000000000000000000000858A88FF858A
+      88FF5357554C858A88FFECEEEEFF858A88FF5357554C858A88FF858A88FF0000
+      0000000000000000000000000000000000000000000000000000000000000000
+      000000000000858A88FF858A88FF858A88FF0000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000004733AFF2D8859FF859C
+      90FF000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000004733AFFA4D9BEFF3D93
+      66FF5F8873FF0000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000004733AFFA9DCC1FF9BD5
+      B7FF4C9F73FF3D7D5CFF00000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000004733AFFA5DABFFF57BB
+      87FF90D2B0FF5BAB82FF23774CFFD4D5D4FF0000000000000000000000000000
+      0000000000000000000000000000000000000000000004733AFFA9DCC1FF45B4
+      7BFF47B47CFF82CCA6FF67B68CFF177745FFC1C5C3FF00000000000000000000
+      0000000000000000000000000000000000000000000004733AFFA9DCC1FF3EB1
+      76FF3AAF73FF36AE70FF6FC598FF71BF97FF187B49FFA6B0ABFF000000000000
+      0000000000000000000000000000000000000000000004733AFFA9DCC1FF36AD
+      70FF32AC6DFF2DAA6AFF28A866FF58BC89FF78C59DFF1F804EFF839A8EFF0000
+      0000000000000000000000000000000000000000000004733AFFA9DCC1FF2EAD
+      6BFF2BAD6AFF27AB68FF22A964FF1CA55FFF41B278FF78C69FFF298858FF678C
+      79FF000000000000000000000000000000000000000004733AFFA9DCC1FF0CAA
+      58FF12AE5EFF15AF60FF16AD61FF13AA5DFF3AB677FF75C79DFF288957FF4E83
+      67FF000000000000000000000000000000000000000004733AFFA9DCC1FF0DB3
+      5EFF0EB660FF0EB660FF0DB45FFF47C484FF70CA9CFF1D824DFF678C79FF0000
+      0000000000000000000000000000000000000000000004733AFFA9DCC1FF10BD
+      65FF11C167FF13C269FF59D395FF67C998FF167C47FF889C92FF000000000000
+      0000000000000000000000000000000000000000000004733AFF83DCAFFF11C3
+      69FF1ACC73FF69DFA3FF5AC28DFF137643FF9EA7A3FF00000000000000000000
+      0000000000000000000000000000000000000000000009773FFF83DBAEFF1FC6
+      71FF72DEA7FF4BB27FFF177445FFA8ADAAFF0000000000000000000000000000
+      0000000000000000000000000000000000000000000004733AFF82D8ACFF76D6
+      A6FF3C9D6AFF27744CFFACAEADFF000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000004733AFF7ACFA4FF2C8C
+      5AFF3D7659FFAEAEAEFF00000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000004733AFF21824FFF6382
+      72FF000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      00000000000000000000000000000000000006622EFF3D805CFFD9E0DCFF0000
+      0000000000000000000000000000000000000000000000000000000000000000
+      00000000000000000000000000000000000006622EFF73BB94FF478362FFCFDF
+      D6FF000000000000000000000000000000000000000000000000000000000000
+      00000000000000000000000000000000000006622EFF85CDA6FF5CB083FF4388
+      63FFB5CEC1FF0000000000000000000000000000000000000000000000000000
+      00000000000000000000000000000000000006622EFF72C599FF47B078FF5FB3
+      86FF418C63FFB7C4BDFF00000000000000000000000000000000000000000000
+      00000000000000000000000000000000000006622EFF6EC496FF2EA463FF33A8
+      68FF59B583FF237849FFB7C4BDFF000000000000000000000000000000000000
+      00000000000000000000000000000000000006622EFF6AC192FF26A05CFF219E
+      58FF2DA463FF58B784FF307E53FFAFC3B9FF0000000000000000000000000000
+      00000000000000000000000000000000000006622EFF63C28EFF1AA155FF19A0
+      55FF169D51FF2DA763FF50AC7CFF34895AFF0000000000000000000000000000
+      000000000000098C40FF000000000000000006622EFF5BC38BFF0FA74FFF10A8
+      51FF1BAC5AFF45B87AFF34895AFF999999FF0000000000000000000000000000
+      0000098B3FE3078C3F71000000000000000006622EFF5CC98EFF0FB556FF15BA
+      5CFF47C481FF21804CFF829E8FFF00000000000000000000000000000000098A
+      3F8E098B3FE300000000000000000000000006622EFF47CD85FF17C564FF52D3
+      8EFF2C8C58FF83978DFF000000000B8A3EE7000000000000000000000000098C
+      40FF078C3F71000000000000000000000000096530FF54CE8EFF46C280FF328D
+      5DFF719783FF0000000000000000098C3FEF098B3FE30089401C249854FF098B
+      3FE30000000000000000000000000000000006622EFF59BC88FF328256FF6A8C
+      7AFFF4F4F45F00000000000000000089401C098C40FF098C40FF098C40FF91CC
+      AAFFFFFFFFFF00000000000000000000000006622EFF337E54FFA4BEB1FF0000
+      000000000000000000000000000000000000078C3F71098C40FF098B3FE30000
+      0000000000000000000000000000000000000000000000000000000000000000
+      00000000000000000000000000000000000000000000098C40FF0089401C0000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      00000000000000000000000000000000000000000000000000003F3FF1454242
+      E5FF3030EF410000000000000000000000003F3FF1454141DEFF2F2FE7430000
+      00000000000000000000000000000000000000000000000000004242E5FF3D3D
+      E9FF3838E7FF2929EF40000000003939F0434040E5FF3838DBFF3535D2FF0000
+      00000000000000000000000000000000000000000000000000003030EF413838
+      E7FF3232EBFF3333ECFF2B2BEF803C3CE7FF3636DEFF2F2FD4FF2525D7450000
+      0000000000000000000000000000000000000000000000000000000000002929
+      EF403333ECFF2F2FEDFF3030ECFF3131E5FF2D2DD9FF2626DD43000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      00002B2BEF803131ECFF2C2CEBFF2B2BE6FF2929ED8000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000003939
+      F0433C3CE7FF3131E5FF2B2BE6FF2A2AE8FF2A2AE3FF2929EF40000000000000
+      00000000000000000000000000000000000000000000000000003F3FF1454040
+      E5FF3636DEFF2D2DD9FF2929ED802A2AE3FF2B2BE5FF2E2EDDFF2828E8410000
+      00000000000000000000000000000000000000000000000000004141DEFF3838
+      DBFF2F2FD4FF2626DD43000000002929EF402E2EDDFF2C2CD8FF2F2FD1FF0000
+      00000000000000000000000000000000000000000000000000002F2FE7433535
+      D2FF2525D7450000000000000000000000002828E8412F2FD1FF2525D7450000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000
+    }
   end
 end

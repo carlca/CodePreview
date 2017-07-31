@@ -68,7 +68,7 @@
   <CompilerOptions>
     <Version Value="11"/>
     <Target>
-      <Filename Value="codepreview"/>
+      <Filename Value="CodePreview"/>
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
@@ -81,6 +81,9 @@
         </Win32>
       </Options>
     </Linking>
+    <Other>
+      <CustomOptions Value="-vbr"/>
+    </Other>
   </CompilerOptions>
   <Debugging>
     <Exceptions Count="3">
