@@ -1,18 +1,18 @@
 {
   "mainForm" : {
     "left" : 550,
-    "top" : 188,
-    "width" : 1000,
-    "height" : 600
+    "top" : 62,
+    "width" : 1145,
+    "height" : 894
   },
   "paths" : {
     "gopath" : "\/Users\/carlca\/Code\/go",
-    "root" : "\/Users\/carlca\/Code\/go\/src\/github.com\/alecthomas\/template",
+    "root" : "\/Users\/carlca\/Code\/go\/src\/github.com\/atotto\/clipboard",
     "goroot" : "\/usr\/local\/go"
   },
   "filesList" : {
     "fontName" : "Lucida Grande",
-    "height" : 285,
+    "height" : 421,
     "fontSize" : 13
   },
   "leftPanel" : {

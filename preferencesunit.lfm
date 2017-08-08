@@ -8,7 +8,6 @@ object PreferencesForm: TPreferencesForm
   ClientWidth = 567
   FormStyle = fsStayOnTop
   Position = poMainFormCenter
-  LCLVersion = '1.8.0.3'
   Visible = False
   object Pages: TPageControl
     Left = 0
@@ -34,7 +33,7 @@ object PreferencesForm: TPreferencesForm
       ClientHeight = 321
       ClientWidth = 561
       object FilesFontSelector: TcaFontSelector
-        Left = 69
+        Left = 68
         Height = 24
         Top = 20
         Width = 428
@@ -46,7 +45,7 @@ object PreferencesForm: TPreferencesForm
         OnSelectedFontChanged = FilesFontSelectorSelectedFontChanged
       end
       object FoldersFontSelector: TcaFontSelector
-        Left = 69
+        Left = 68
         Height = 24
         Top = 50
         Width = 428
